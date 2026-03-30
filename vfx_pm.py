@@ -169,7 +169,7 @@ points = alt.Chart(filtered_df).mark_circle(size=90).encode(
     color=alt.Color(
         "Level:N",
         title="Level",
-        scale=alt.Scale(scheme="tableau20"),   # ✅ Tableau 20 applied
+        scale=alt.Scale(scheme="tableau20"),
         legend=alt.Legend(orient="right")
     ),
     opacity=alt.condition(level_select, alt.value(1), alt.value(0.15)),
@@ -193,9 +193,18 @@ points = alt.Chart(filtered_df).mark_circle(size=90).encode(
 chart = (base + points).interactive()
 
 # ----------------------------
-# Main layout
+# Main layout (Title + Subheading)
 # ----------------------------
 st.title("VFX Project Manager Talent Dashboard")
+
+st.markdown(
+    "<div style='color: #6c757d; font-size:16px; margin-bottom: 20px;'>"
+    "A talent snapshot revealing where VFX Project Manager talent exists, "
+    "how it is distributed, and how to access it effectively."
+    "</div>",
+    unsafe_allow_html=True
+)
+
 st.altair_chart(chart, use_container_width=True)
 
 if filtered_df.empty:
